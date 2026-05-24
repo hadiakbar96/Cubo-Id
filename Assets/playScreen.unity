@@ -990,6 +990,7 @@ MonoBehaviour:
   - {fileID: 828560810}
   - {fileID: 297187506}
   - {fileID: 1286182153}
+  trashPanel: {fileID: 1885720439}
 --- !u!224 &890176956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1775,6 +1776,9 @@ MonoBehaviour:
   anorganicPrefab: {fileID: 3137245223237832926, guid: 0a169c98a10894630aa4b8f6525c2baf, type: 3}
   plasticPrefab: {fileID: 3137245223237832926, guid: f9333dd98aaf84a9b936eb087e2cb378, type: 3}
   playerTransform: {fileID: 108072894}
+  bioCubePrefab: {fileID: 687431270958135873, guid: 4facd686da0294641843627b18e61888, type: 3}
+  metalCubePrefab: {fileID: 687431270958135873, guid: 320ee2cdcc1464db29450cb6b3e6c357, type: 3}
+  plasticCubePrefab: {fileID: 687431270958135873, guid: 6d67dfb9ff1234348bb3cf14af36150a, type: 3}
 --- !u!4 &1655602023
 Transform:
   m_ObjectHideFlags: 0

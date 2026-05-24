@@ -18,10 +18,9 @@ public class InventorySlotUI : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         Image kotakImage = GetComponent<Image>();
         
-        // Kita cek: Apakah kotak ini terisi? (Warna hitam)
-        if (kotakImage.color == Color.black) 
+        // Ubah bagian ini: Jika warna BUKAN putih (!= Color.white), berarti ada barangnya
+        if (kotakImage.color != Color.white) 
         {
-            // Panggil manager untuk membuang barang sesuai nomor urut kotak ini
             InventoryManager.Instance.DropItemFromSlot(slotIndex);
         }
     }
