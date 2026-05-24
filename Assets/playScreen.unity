@@ -262,6 +262,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   pressSpaceText: {fileID: 145294767}
+  upSprite: {fileID: 2347532270071011419, guid: eda5e51d821bb41c884745de5e778eb6, type: 3}
+  downSprite: {fileID: -8042527737740088811, guid: eda5e51d821bb41c884745de5e778eb6, type: 3}
+  leftSprite: {fileID: 5463075118845396717, guid: eda5e51d821bb41c884745de5e778eb6, type: 3}
+  rightSprite: {fileID: 1271722272082522542, guid: eda5e51d821bb41c884745de5e778eb6, type: 3}
 --- !u!61 &108072896
 BoxCollider2D:
   m_ObjectHideFlags: 0
