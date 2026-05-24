@@ -1,0 +1,858 @@
+fileFormatVersion: 2
+guid: 7d2ee66ebd3e941beb3c1145bb83a69d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2215697900656496230
+    second: Asset_Trash_0
+  - first:
+      213: 3333638998692756265
+    second: Asset_Trash_1
+  - first:
+      213: 2361244610036309107
+    second: Asset_Trash_2
+  - first:
+      213: 6213651683956418752
+    second: Asset_Trash_3
+  - first:
+      213: -3202554733342730216
+    second: Asset_Trash_4
+  - first:
+      213: -5050999655872406119
+    second: Asset_Trash_5
+  - first:
+      213: -3414244208271029620
+    second: Asset_Trash_6
+  - first:
+      213: 8817346304951852966
+    second: Asset_Trash_7
+  - first:
+      213: 3914244722320615656
+    second: Asset_Trash_8
+  - first:
+      213: -7506301939977865698
+    second: Asset_Trash_9
+  - first:
+      213: -327566663850006212
+    second: Asset_Trash_10
+  - first:
+      213: 4597028559253155900
+    second: Asset_Trash_11
+  - first:
+      213: -810706355129635670
+    second: Asset_Trash_12
+  - first:
+      213: 7880456813367732386
+    second: Asset_Trash_13
+  - first:
+      213: -3019997107973902979
+    second: Asset_Trash_14
+  - first:
+      213: -8387642771893212040
+    second: Asset_Trash_15
+  - first:
+      213: -7708373661679386842
+    second: Asset_Trash_16
+  - first:
+      213: -3266716338151598255
+    second: Asset_Trash_17
+  - first:
+      213: -1011309558644495942
+    second: Asset_Trash_18
+  - first:
+      213: 1093918170320393642
+    second: Asset_Trash_19
+  - first:
+      213: -8718606492931934240
+    second: Asset_Trash_20
+  - first:
+      213: 3637106094343483630
+    second: Asset_Trash_21
+  - first:
+      213: -6945475246432435048
+    second: Asset_Trash_22
+  - first:
+      213: -2393431770732351692
+    second: Asset_Trash_23
+  - first:
+      213: -5559122630427179897
+    second: Asset_Trash_24
+  - first:
+      213: 5747849857604747641
+    second: Asset_Trash_25
+  - first:
+      213: -7102316389831094780
+    second: Asset_Trash_26
+  - first:
+      213: 3850471867366335427
+    second: Asset_Trash_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Trash_Apple
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 897
+        width: 130
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66e853a508dbfbe10800000000000000
+      internalID: 2215697900656496230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Bone
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 907
+        width: 139
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92b7876c107734e20800000000000000
+      internalID: 3333638998692756265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_2
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 943
+        width: 45
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c15016673d4c020800000000000000
+      internalID: 2361244610036309107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_3
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 874
+        width: 68
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8ea3409435b3650800000000000000
+      internalID: 6213651683956418752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Leaf
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 888
+        width: 100
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8185c59107d3e83d0800000000000000
+      internalID: -3202554733342730216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Fishbone
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 875
+        width: 84
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99dda17039e37e9b0800000000000000
+      internalID: -5050999655872406119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Branch
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 893
+        width: 134
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8a02956bfa2e90d0800000000000000
+      internalID: -3414244208271029620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Metal1
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 898
+        width: 171
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6af12408fb18d5a70800000000000000
+      internalID: 8817346304951852966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Metal2
+      rect:
+        serializedVersion: 2
+        x: 1199
+        y: 891
+        width: 138
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e82edd16d0325630800000000000000
+      internalID: 3914244722320615656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Can
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 899
+        width: 100
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e163bcad72244d790800000000000000
+      internalID: -7506301939977865698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Scissors
+      rect:
+        serializedVersion: 2
+        x: 1523
+        y: 880
+        width: 156
+        height: 179
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c39e5f0dadf347bf0800000000000000
+      internalID: -327566663850006212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Pipe
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 632
+        width: 166
+        height: 244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c303c985e1debcf30800000000000000
+      internalID: 4597028559253155900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Battery
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 657
+        width: 61
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaca8558ddacfb4f0800000000000000
+      internalID: -810706355129635670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 599
+        width: 139
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a8279428b10d5d60800000000000000
+      internalID: 7880456813367732386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_14
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 642
+        width: 194
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7d228481a0d616d0800000000000000
+      internalID: -3019997107973902979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_15
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 659
+        width: 138
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87cae6ea65b199b80800000000000000
+      internalID: -8387642771893212040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_16
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 649
+        width: 95
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62f7f93defa560590800000000000000
+      internalID: -7708373661679386842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Bottle
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 647
+        width: 61
+        height: 183
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 157528a5cca4aa2d0800000000000000
+      internalID: -3266716338151598255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Cup
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 655
+        width: 63
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab9a907805b17f1f0800000000000000
+      internalID: -1011309558644495942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_19
+      rect:
+        serializedVersion: 2
+        x: 1433
+        y: 653
+        width: 138
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa5da43b7c06e2f00800000000000000
+      internalID: 1093918170320393642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trash_Gallon
+      rect:
+        serializedVersion: 2
+        x: 1622
+        y: 582
+        width: 170
+        height: 284
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e7b06c7699410780800000000000000
+      internalID: -8718606492931934240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_21
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 389
+        width: 200
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee070cbf8b8997230800000000000000
+      internalID: 3637106094343483630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_22
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 364
+        width: 141
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8944024ef07bc9f90800000000000000
+      internalID: -6945475246432435048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_23
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 364
+        width: 141
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f2d574c72d8ced0800000000000000
+      internalID: -2393431770732351692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_24
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 364
+        width: 141
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7848d8ecb670ad2b0800000000000000
+      internalID: -5559122630427179897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_25
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 322
+        width: 534
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9718fc8fdf674cf40800000000000000
+      internalID: 5747849857604747641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_26
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 362
+        width: 211
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40ecea58fd08f6d90800000000000000
+      internalID: -7102316389831094780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_Trash_27
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 60
+        width: 361
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c3610043cf9f6530800000000000000
+      internalID: 3850471867366335427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 135e162b80c2840d8b8c4c5fce893d16
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Asset_Trash_13: 7880456813367732386
+      Asset_Trash_14: -3019997107973902979
+      Asset_Trash_15: -8387642771893212040
+      Asset_Trash_16: -7708373661679386842
+      Asset_Trash_19: 1093918170320393642
+      Asset_Trash_2: 2361244610036309107
+      Asset_Trash_21: 3637106094343483630
+      Asset_Trash_22: -6945475246432435048
+      Asset_Trash_23: -2393431770732351692
+      Asset_Trash_24: -5559122630427179897
+      Asset_Trash_25: 5747849857604747641
+      Asset_Trash_26: -7102316389831094780
+      Asset_Trash_27: 3850471867366335427
+      Asset_Trash_3: 6213651683956418752
+      Trash_Apple: 2215697900656496230
+      Trash_Battery: -810706355129635670
+      Trash_Bone: 3333638998692756265
+      Trash_Bottle: -3266716338151598255
+      Trash_Branch: -3414244208271029620
+      Trash_Can: -7506301939977865698
+      Trash_Cup: -1011309558644495942
+      Trash_Fishbone: -5050999655872406119
+      Trash_Gallon: -8718606492931934240
+      Trash_Leaf: -3202554733342730216
+      Trash_Metal1: 8817346304951852966
+      Trash_Metal2: 3914244722320615656
+      Trash_Pipe: 4597028559253155900
+      Trash_Scissors: -327566663850006212
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

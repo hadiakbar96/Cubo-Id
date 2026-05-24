@@ -14,9 +14,14 @@ public class InventoryUIManager : MonoBehaviour
     // Menyimpan referensi panel pembungkus kotaknya agar bisa digoyang bersamaan
     public RectTransform trashPanel; 
 
+    private Sprite defaultTrashSprite;
+    private Sprite defaultSpecialSprite;
+
     private void Awake()
     {
         Instance = this; 
+        if (trashSlots.Length > 0 && trashSlots[0] != null) defaultTrashSprite = trashSlots[0].sprite;
+        if (specialSlots.Length > 0 && specialSlots[0] != null) defaultSpecialSprite = specialSlots[0].sprite;
     }
 
     public void UpdateUI()
@@ -26,14 +31,28 @@ public class InventoryUIManager : MonoBehaviour
         {
             if (i < currentTrashCount)
             {
-                ItemType type = InventoryManager.Instance.temporaryInventory[i].itemType;
+                ItemData item = InventoryManager.Instance.temporaryInventory[i];
+                ItemType type = item.itemType;
 
-                if (type == ItemType.Organic) trashSlots[i].color = Color.green;
-                else if (type == ItemType.Anorganic) trashSlots[i].color = Color.gray;
-                else if (type == ItemType.Plastic) trashSlots[i].color = Color.blue;
+                // Jika ada ikon custom, tampilkan gambarnya secara penuh
+                if (item.itemIcon != null)
+                {
+                    trashSlots[i].sprite = item.itemIcon;
+                    trashSlots[i].color = Color.white;
+                }
+                else
+                {
+                    // Fallback: Warnai kotak default sesuai tipe sampah
+                    trashSlots[i].sprite = defaultTrashSprite;
+                    if (type == ItemType.Organic) trashSlots[i].color = Color.green;
+                    else if (type == ItemType.Anorganic) trashSlots[i].color = Color.gray;
+                    else if (type == ItemType.Plastic) trashSlots[i].color = Color.blue;
+                }
             }
             else
             {
+                // Kembalikan ke tampilan default saat kosong
+                trashSlots[i].sprite = defaultTrashSprite;
                 trashSlots[i].color = Color.white;
             }
         }
@@ -41,8 +60,25 @@ public class InventoryUIManager : MonoBehaviour
         int currentSpecialCount = InventoryManager.Instance.collectionInventory.Count;
         for (int i = 0; i < specialSlots.Length; i++)
         {
-            if (i < currentSpecialCount) specialSlots[i].color = Color.yellow;
-            else specialSlots[i].color = Color.white;
+            if (i < currentSpecialCount)
+            {
+                ItemData item = InventoryManager.Instance.collectionInventory[i];
+                if (item.itemIcon != null)
+                {
+                    specialSlots[i].sprite = item.itemIcon;
+                    specialSlots[i].color = Color.white;
+                }
+                else
+                {
+                    specialSlots[i].sprite = defaultSpecialSprite;
+                    specialSlots[i].color = Color.yellow;
+                }
+            }
+            else
+            {
+                specialSlots[i].sprite = defaultSpecialSprite;
+                specialSlots[i].color = Color.white;
+            }
         }
     }
 

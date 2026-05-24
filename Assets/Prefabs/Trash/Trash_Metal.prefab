@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 371080857368394626}
   - component: {fileID: 7413280509913859209}
   m_Layer: 7
-  m_Name: Trash_Anorganic
+  m_Name: Trash_Metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
