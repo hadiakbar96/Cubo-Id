@@ -1,6 +1,8 @@
 using UnityEngine;
 
 public enum ItemType {
-    Trash,
+    Organic,
+    Anorganic,
+    Plastic,
     Special
 }

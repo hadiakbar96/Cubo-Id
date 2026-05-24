@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 371080857368394626}
   - component: {fileID: 7413280509913859209}
   m_Layer: 7
-  m_Name: TestTrash
+  m_Name: Trash_Organic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5f8afbae97b481b958d90ef7413c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Scrap Metal
+  itemName: Sampah Organic
   itemType: 0
 --- !u!61 &7413280509913859209
 BoxCollider2D:

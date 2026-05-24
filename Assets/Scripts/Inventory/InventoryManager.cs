@@ -11,8 +11,10 @@ public class InventoryManager : MonoBehaviour
     public int maxTrashCapacity = 5;
 
     [Header("Referensi Drop")]
-    public GameObject trashPrefab;    // Menyimpan wujud asli sampah
-    public Transform playerTransform; // Posisi tempat jatuhnya sampah
+    public GameObject organicPrefab;
+    public GameObject anorganicPrefab;
+    public GameObject plasticPrefab;
+    public Transform playerTransform;
 
     private void Awake()
     {
@@ -21,12 +23,17 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(ItemData item)
     {
-        if (item.itemType == ItemType.Trash)
+        // Mengecek apakah barang ini termasuk salah satu jenis sampah
+        bool isTrash = (item.itemType == ItemType.Organic || 
+                        item.itemType == ItemType.Anorganic || 
+                        item.itemType == ItemType.Plastic);
+
+        if (isTrash)
         {
             if (temporaryInventory.Count < maxTrashCapacity)
             {
                 temporaryInventory.Add(item);
-                InventoryUIManager.Instance.UpdateUI(); // Update UI langsung
+                InventoryUIManager.Instance.UpdateUI();
 
                 Debug.Log(item.itemName + " added to Temporary Inventory");
                 Destroy(item.gameObject);
@@ -39,36 +46,35 @@ public class InventoryManager : MonoBehaviour
         else if (item.itemType == ItemType.Special)
         {
             collectionInventory.Add(item);
-            InventoryUIManager.Instance.UpdateUI(); // Update UI langsung
+            InventoryUIManager.Instance.UpdateUI();
 
             Debug.Log(item.itemName + " added to Collection Inventory");
             Destroy(item.gameObject);
         }
     }
-    
-    // Fungsi lama bawaan dari prototype sebelumnya (bisa diabaikan)
-    public void ThrowTrash(ItemData itemName)
-    {
-        if (temporaryInventory.Contains(itemName))
-        {
-            temporaryInventory.Remove(itemName);
-            Debug.Log("Threw away " + itemName);
-        }
-    }
 
-    // --- FUNGSI BARU UNTUK DRAG & DROP ---
     public void DropItemFromSlot(int slotIndex)
     {
-        // Mengecek apakah kotak yang di-drag benar-benar ada isinya
         if (slotIndex >= 0 && slotIndex < temporaryInventory.Count)
         {
-            // 1. Hapus data dari kantong penyimpanan
+            // Ambil data tipe barang yang mau dibuang
+            ItemType droppedType = temporaryInventory[slotIndex].itemType;
+            
+            // Hapus dari daftar
             temporaryInventory.RemoveAt(slotIndex);
 
-            // 2. Cetak ulang benda fisik di posisi karakter pemain
-            Instantiate(trashPrefab, playerTransform.position, Quaternion.identity);
+            // Tentukan wujud (Prefab) mana yang akan jatuh
+            GameObject prefabToDrop = null;
+            if (droppedType == ItemType.Organic) prefabToDrop = organicPrefab;
+            else if (droppedType == ItemType.Anorganic) prefabToDrop = anorganicPrefab;
+            else if (droppedType == ItemType.Plastic) prefabToDrop = plasticPrefab;
 
-            // 3. Segarkan (Update) layar UI agar kotaknya kembali putih
+            // Cetak fisiknya ke tanah
+            if (prefabToDrop != null) 
+            {
+                Instantiate(prefabToDrop, playerTransform.position, Quaternion.identity);
+            }
+
             InventoryUIManager.Instance.UpdateUI();
         }
     }
