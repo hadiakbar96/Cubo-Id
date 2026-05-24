@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private PlayerControls playerControls;
     private Vector2 movement;
     private Vector2 lastMoveDirection = Vector2.right;
+    private SpriteRenderer spriteRenderer;
 
     private Rigidbody2D rb;
     private Rigidbody2D currentBox;
@@ -19,10 +20,17 @@ public class PlayerController : MonoBehaviour
     private bool isHoldingBox = false;
     private Vector2 boxOffsetFromPlayer;
 
+    [Header("Sprites for Directions")]
+    public Sprite upSprite;
+    public Sprite downSprite;
+    public Sprite leftSprite;
+    public Sprite rightSprite;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -40,6 +48,7 @@ public class PlayerController : MonoBehaviour
         PlayerInput();
         DetectPushableObject();
         HandleHoldInteraction();
+        updateSprite();
     }
 
     private void FixedUpdate()
@@ -121,5 +130,14 @@ public class PlayerController : MonoBehaviour
 
         rb.MovePosition(playerTargetPosition);
         currentBox.MovePosition(boxTargetPosition);
+    }
+
+    private void updateSprite()
+    {
+        if (movement.y > 0) spriteRenderer.sprite = upSprite;
+        else if (movement.y < 0) spriteRenderer.sprite = downSprite;
+        else if (movement.x > 0) spriteRenderer.sprite = rightSprite;
+        else if (movement.x < 0) spriteRenderer.sprite = leftSprite;
+        else spriteRenderer.sprite = downSprite;
     }
 }
