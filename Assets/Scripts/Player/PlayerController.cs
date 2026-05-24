@@ -134,10 +134,10 @@ public class PlayerController : MonoBehaviour
 
     private void updateSprite()
     {
-        if (movement.y > 0) spriteRenderer.sprite = upSprite;
-        else if (movement.y < 0) spriteRenderer.sprite = downSprite;
-        else if (movement.x > 0) spriteRenderer.sprite = rightSprite;
-        else if (movement.x < 0) spriteRenderer.sprite = leftSprite;
-        else spriteRenderer.sprite = downSprite;
+        if (movement.y > 0 && upSprite != null) spriteRenderer.sprite = upSprite;
+        else if (movement.y < 0 && downSprite != null) spriteRenderer.sprite = downSprite;
+        else if (movement.x > 0 && rightSprite != null) spriteRenderer.sprite = rightSprite;
+        else if (movement.x < 0 && leftSprite != null) spriteRenderer.sprite = leftSprite;
+        else if (downSprite != null) spriteRenderer.sprite = downSprite;
     }
 }
