@@ -1,0 +1,147 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    [SerializeField] private float movespeed = 4f;
+    [SerializeField] private float interactRange = 1.2f;
+    [SerializeField] private LayerMask pushableLayer;
+    [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private GameObject pressSpaceText;
+
+    private PlayerControls playerControls;
+    private Vector2 movement;
+    private Vector2 lastMoveDirection = Vector2.right;
+
+    private Rigidbody2D rb;
+    private Rigidbody2D currentBox;
+    private Collider2D currentBoxCollider;
+
+    private bool isHoldingBox = false;
+
+    private RaycastHit2D[] boxHits = new RaycastHit2D[5];
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
+    private void Update()
+    {
+        PlayerInput();
+        DetectPushableObject();
+        HandleHoldInteraction();
+    }
+
+    private void FixedUpdate()
+    {
+        if (isHoldingBox && currentBox != null)
+        {
+            MovePlayerAndBox();
+        }
+        else
+        {
+            MovePlayerOnly();
+        }
+    }
+
+    private void PlayerInput()
+    {
+        movement = playerControls.Movement.Move.ReadValue<Vector2>();
+
+        if (movement != Vector2.zero)
+        {
+            lastMoveDirection = movement.normalized;
+        }
+    }
+
+    private void DetectPushableObject()
+    {
+        if (isHoldingBox)
+        {
+            pressSpaceText.SetActive(false);
+            return;
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            rb.position,
+            lastMoveDirection,
+            interactRange,
+            pushableLayer
+        );
+
+        if (hit.collider != null)
+        {
+            currentBox = hit.collider.GetComponent<Rigidbody2D>();
+            currentBoxCollider = hit.collider;
+            pressSpaceText.SetActive(true);
+        }
+        else
+        {
+            currentBox = null;
+            currentBoxCollider = null;
+            pressSpaceText.SetActive(false);
+        }
+    }
+
+    private void HandleHoldInteraction()
+    {
+        bool spacePressed = playerControls.Movement.Interact.IsPressed();
+
+        if (spacePressed && currentBox != null)
+        {
+            isHoldingBox = true;
+        }
+        else
+        {
+            isHoldingBox = false;
+        }
+    }
+
+    private void MovePlayerOnly()
+    {
+        Vector2 delta = movement * movespeed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + delta);
+    }
+
+    private void MovePlayerAndBox()
+    {
+        if (movement == Vector2.zero) return;
+
+        Vector2 delta = movement * movespeed * Time.fixedDeltaTime;
+
+        if (CanBoxMove(delta))
+        {
+            rb.MovePosition(rb.position + delta);
+            currentBox.MovePosition(currentBox.position + delta);
+        }
+    }
+
+    private bool CanBoxMove(Vector2 delta)
+    {
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(obstacleLayer);
+        filter.useTriggers = false;
+
+        int hitCount = currentBoxCollider.Cast(
+            delta.normalized,
+            filter,
+            boxHits,
+            delta.magnitude
+        );
+
+        return hitCount == 0;
+    }
+}
