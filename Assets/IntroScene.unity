@@ -587,8 +587,8 @@ MonoBehaviour:
   - '> Good luck :-)'
   typingSpeed: 0.05
   gameSceneName: playScreen
-  typingAudio: {fileID: 0}
-  typingClip: {fileID: 0}
+  typingAudio: {fileID: 343458273}
+  typingClip: {fileID: 8300000, guid: 028a445364508447aa6cd25b863d1889, type: 3}
 --- !u!4 &343458272
 Transform:
   m_ObjectHideFlags: 0
