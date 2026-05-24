@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float movespeed = 4f;
     [SerializeField] private float interactRange = 1.2f;
     [SerializeField] private LayerMask pushableLayer;
+    [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private GameObject pressSpaceText;
 
     private PlayerControls playerControls;
@@ -15,9 +16,11 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Rigidbody2D currentBox;
+    private Collider2D currentBoxCollider;
 
     private bool isHoldingBox = false;
-    private Vector2 boxOffsetFromPlayer;
+
+    private RaycastHit2D[] boxHits = new RaycastHit2D[5];
 
     private void Awake()
     {
@@ -82,11 +85,13 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             currentBox = hit.collider.GetComponent<Rigidbody2D>();
+            currentBoxCollider = hit.collider;
             pressSpaceText.SetActive(true);
         }
         else
         {
             currentBox = null;
+            currentBoxCollider = null;
             pressSpaceText.SetActive(false);
         }
     }
@@ -97,11 +102,7 @@ public class PlayerController : MonoBehaviour
 
         if (spacePressed && currentBox != null)
         {
-            if (!isHoldingBox)
-            {
-                isHoldingBox = true;
-                boxOffsetFromPlayer = currentBox.position - rb.position;
-            }
+            isHoldingBox = true;
         }
         else
         {
@@ -111,15 +112,36 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayerOnly()
     {
-        rb.MovePosition(rb.position + movement * movespeed * Time.fixedDeltaTime);
+        Vector2 delta = movement * movespeed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + delta);
     }
 
     private void MovePlayerAndBox()
     {
-        Vector2 playerTargetPosition = rb.position + movement * movespeed * Time.fixedDeltaTime;
-        Vector2 boxTargetPosition = playerTargetPosition + boxOffsetFromPlayer;
+        if (movement == Vector2.zero) return;
 
-        rb.MovePosition(playerTargetPosition);
-        currentBox.MovePosition(boxTargetPosition);
+        Vector2 delta = movement * movespeed * Time.fixedDeltaTime;
+
+        if (CanBoxMove(delta))
+        {
+            rb.MovePosition(rb.position + delta);
+            currentBox.MovePosition(currentBox.position + delta);
+        }
+    }
+
+    private bool CanBoxMove(Vector2 delta)
+    {
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(obstacleLayer);
+        filter.useTriggers = false;
+
+        int hitCount = currentBoxCollider.Cast(
+            delta.normalized,
+            filter,
+            boxHits,
+            delta.magnitude
+        );
+
+        return hitCount == 0;
     }
 }
