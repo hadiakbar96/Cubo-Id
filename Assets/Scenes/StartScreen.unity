@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0cf47e840014d4a962b6471c9e72f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  gameSceneName: SampleScene
+  gameSceneName: playScreen
 --- !u!1 &617760051
 GameObject:
   m_ObjectHideFlags: 0
