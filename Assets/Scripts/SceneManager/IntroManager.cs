@@ -20,7 +20,7 @@ public class IntroManager : MonoBehaviour
 
     [Header("Settings")]
     public float typingSpeed = 0.05f;
-    public string gameSceneName = "playScreen";
+    public string gameSceneName = "LevelScreen";
 
     [Header("TypingSound")]
     public AudioSource typingAudio;
