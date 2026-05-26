@@ -6,8 +6,9 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
-    public List<ItemData> temporaryInventory = new List<ItemData>();
-    public List<ItemData> collectionInventory = new List<ItemData>();
+    // Menggunakan ItemInfo (bukan ItemData) agar data tetap ada setelah GameObject di-destroy
+    public List<ItemInfo> temporaryInventory = new List<ItemInfo>();
+    public List<ItemInfo> collectionInventory = new List<ItemInfo>();
 
     public int maxTrashCapacity = 5;
 
@@ -42,11 +43,14 @@ public class InventoryManager : MonoBehaviour
                         item.itemType == ItemType.Anorganic || 
                         item.itemType == ItemType.Plastic);
 
+        // Salin data item ke ItemInfo SEBELUM destroy, agar sprite icon tetap tersimpan
+        ItemInfo info = new ItemInfo(item);
+
         if (isTrash)
         {
             if (temporaryInventory.Count < maxTrashCapacity)
             {
-                temporaryInventory.Add(item);
+                temporaryInventory.Add(info);
                 InventoryUIManager.Instance.UpdateUI();
                 Destroy(item.gameObject);
             } 
@@ -54,7 +58,7 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item.itemType == ItemType.Special)
         {
-            collectionInventory.Add(item);
+            collectionInventory.Add(info);
             InventoryUIManager.Instance.UpdateUI();
             Destroy(item.gameObject);
         }
@@ -64,17 +68,43 @@ public class InventoryManager : MonoBehaviour
     {
         if (slotIndex >= 0 && slotIndex < temporaryInventory.Count)
         {
-            ItemType droppedType = temporaryInventory[slotIndex].itemType;
+            ItemInfo droppedItem = temporaryInventory[slotIndex];
             temporaryInventory.RemoveAt(slotIndex);
 
             GameObject prefabToDrop = null;
-            if (droppedType == ItemType.Organic) prefabToDrop = organicPrefab;
-            else if (droppedType == ItemType.Anorganic) prefabToDrop = anorganicPrefab;
-            else if (droppedType == ItemType.Plastic) prefabToDrop = plasticPrefab;
+
+            // Prioritaskan sourcePrefab (prefab asli item)
+            if (droppedItem.sourcePrefab != null)
+            {
+                prefabToDrop = droppedItem.sourcePrefab;
+            }
+            else
+            {
+                // Fallback: gunakan prefab generik berdasarkan tipe
+                if (droppedItem.itemType == ItemType.Organic) prefabToDrop = organicPrefab;
+                else if (droppedItem.itemType == ItemType.Anorganic) prefabToDrop = anorganicPrefab;
+                else if (droppedItem.itemType == ItemType.Plastic) prefabToDrop = plasticPrefab;
+            }
 
             if (prefabToDrop != null) 
             {
-                Instantiate(prefabToDrop, playerTransform.position, Quaternion.identity);
+                GameObject dropped = Instantiate(prefabToDrop, playerTransform.position, Quaternion.identity);
+
+                // Pastikan sprite dan data item sesuai dengan yang dipickup
+                SpriteRenderer sr = dropped.GetComponent<SpriteRenderer>();
+                if (sr != null && droppedItem.itemIcon != null)
+                {
+                    sr.sprite = droppedItem.itemIcon;
+                }
+
+                ItemData itemData = dropped.GetComponent<ItemData>();
+                if (itemData != null)
+                {
+                    itemData.itemName = droppedItem.itemName;
+                    itemData.itemType = droppedItem.itemType;
+                    itemData.itemIcon = droppedItem.itemIcon;
+                    itemData.sourcePrefab = droppedItem.sourcePrefab;
+                }
             }
 
             InventoryUIManager.Instance.UpdateUI();
@@ -124,7 +154,29 @@ public class InventoryManager : MonoBehaviour
         // Jatuhkan Cube hasil rakitan di depan karakter!
         if (cubeToCraft != null)
         {
-            Instantiate(cubeToCraft, playerTransform.position, Quaternion.identity);
+            // Spawn cube sedikit di depan player (berdasarkan arah terakhir)
+            Vector3 spawnPos = playerTransform.position + new Vector3(1.5f, 0f, 0f);
+            GameObject cubeInstance = Instantiate(cubeToCraft, spawnPos, Quaternion.identity);
+
+            // Bersihkan nama agar tidak ada "(Clone)" — penting untuk deteksi TrashBin
+            cubeInstance.name = cubeToCraft.name;
+
+            // Cube hanya bergerak saat ditarik/didorong (Kinematic = tidak terpengaruh tabrakan biasa)
+            Rigidbody2D rb = cubeInstance.GetComponent<Rigidbody2D>();
+            if (rb == null) rb = cubeInstance.AddComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            // Set layer ke Pushable agar PlayerController bisa deteksi
+            int pushableLayer = LayerMask.NameToLayer("Pushable");
+            if (pushableLayer != -1) cubeInstance.layer = pushableLayer;
+
+            // Pastikan ada collider untuk fisika push + trigger bin
+            if (cubeInstance.GetComponent<BoxCollider2D>() == null)
+            {
+                cubeInstance.AddComponent<BoxCollider2D>();
+            }
+
             Debug.Log("Sukses membuat " + cubeToCraft.name + "!");
         }
     }
