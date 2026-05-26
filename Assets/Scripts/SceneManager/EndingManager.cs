@@ -22,6 +22,7 @@ public class EndingManager : MonoBehaviour
 
     private bool isTyping = false;
     private bool audioPlaying = false;
+    private bool skipTyping = false;
 
     void Start()
     {
@@ -49,6 +50,7 @@ public class EndingManager : MonoBehaviour
     IEnumerator TypeText(TextMeshProUGUI textComponent, string line)
     {
         isTyping = true;
+        skipTyping = false;
 
         textComponent.text = "";
 
@@ -56,6 +58,11 @@ public class EndingManager : MonoBehaviour
 
         foreach (char letter in line)
         {
+            if (skipTyping)
+            {
+                textComponent.text = line;
+                break;
+            }
             textComponent.text += letter;
 
             // Play sound only for non-space characters
@@ -74,5 +81,13 @@ public class EndingManager : MonoBehaviour
         }
 
         isTyping = false;
+    }
+
+    void Update()
+    {
+        if (isTyping && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)))
+        {
+            skipTyping = true;
+        }
     }
 }
