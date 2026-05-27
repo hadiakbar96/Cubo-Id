@@ -2975,6 +2975,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6789037077017018052, guid: ad3ddbfb172bc40b188cfb70ed55a11d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8056593
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789037077017018052, guid: ad3ddbfb172bc40b188cfb70ed55a11d, type: 3}
+      propertyPath: m_Size.y
+      value: 1.621386
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789037077017018052, guid: ad3ddbfb172bc40b188cfb70ed55a11d, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.012146473
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789037077017018052, guid: ad3ddbfb172bc40b188cfb70ed55a11d, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.0071127415
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4666,13 +4682,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trash_Branch (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7392873294481911834, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
+      propertyPath: m_Size.x
+      value: 1.2070932
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392873294481911834, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.018272877
+      objectReference: {fileID: 0}
     - target: {fileID: 8876871907754401366, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -933.35
+      value: -933.63
       objectReference: {fileID: 0}
     - target: {fileID: 8876871907754401366, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -419.66
+      value: -419.65
       objectReference: {fileID: 0}
     - target: {fileID: 8876871907754401366, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5126,6 +5150,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6789037077017018052, guid: ad3ddbfb172bc40b188cfb70ed55a11d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.81780624
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789037077017018052, guid: ad3ddbfb172bc40b188cfb70ed55a11d, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5849485
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789037077017018052, guid: ad3ddbfb172bc40b188cfb70ed55a11d, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.006072998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789037077017018052, guid: ad3ddbfb172bc40b188cfb70ed55a11d, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.013185978
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5142,6 +5182,22 @@ PrefabInstance:
     - target: {fileID: 3938529657922786414, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
       propertyPath: m_Name
       value: Trash_Branch
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392873294481911834, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1218204
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392873294481911834, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5064564
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392873294481911834, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.060910225
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392873294481911834, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.004470825
       objectReference: {fileID: 0}
     - target: {fileID: 8876871907754401366, guid: 393bdc20664244d6dbfec3f3ac8adcdc, type: 3}
       propertyPath: m_LocalPosition.x
