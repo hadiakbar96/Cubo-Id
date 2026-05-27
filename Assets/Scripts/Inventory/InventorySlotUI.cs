@@ -16,10 +16,8 @@ public class InventorySlotUI : MonoBehaviour, IDragHandler, IEndDragHandler
     // Fungsi ini otomatis terpanggil saat Anda melepas klik (Drop)
     public void OnEndDrag(PointerEventData eventData)
     {
-        Image kotakImage = GetComponent<Image>();
-        
-        // Ubah bagian ini: Jika warna BUKAN putih (!= Color.white), berarti ada barangnya
-        if (kotakImage.color != Color.white) 
+        // Cek apakah slot ini berisi item berdasarkan data inventory
+        if (slotIndex < InventoryManager.Instance.temporaryInventory.Count)
         {
             InventoryManager.Instance.DropItemFromSlot(slotIndex);
         }

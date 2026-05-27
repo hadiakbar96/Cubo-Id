@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask pushableLayer;
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private GameObject pressSpaceText;
+    [SerializeField] private Vector3 textOffset = new Vector3(0f, 1.5f, 0f); // Offset di atas objek
+
+    private Camera mainCamera;
 
     private PlayerControls playerControls;
     private Vector2 movement;
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        mainCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -96,6 +100,11 @@ public class PlayerController : MonoBehaviour
             currentBox = hit.collider.GetComponent<Rigidbody2D>();
             currentBoxCollider = hit.collider;
             pressSpaceText.SetActive(true);
+
+            // Posisikan teks di atas objek yang terdeteksi
+            Vector3 worldPos = hit.collider.transform.position + textOffset;
+            Vector3 screenPos = mainCamera.WorldToScreenPoint(worldPos);
+            pressSpaceText.transform.position = screenPos;
         }
         else
         {
