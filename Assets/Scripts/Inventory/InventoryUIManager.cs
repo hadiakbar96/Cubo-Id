@@ -11,6 +11,11 @@ public class InventoryUIManager : MonoBehaviour
     public Image[] trashSlots;
     public Image[] specialSlots;
 
+    [Header("Special Slots Auto-Discovery")]
+    [Tooltip("Assign the parent GameObject that contains ALL special slot Images as direct children. " +
+             "The script will find them automatically — you won't need to assign slots one by one.")]
+    public Transform specialSlotsParent;
+
     [Header("Slot Sprites (dari Artist)")]
     public Sprite slotDefault;    // Trash bg_0 - Abu-abu (slot kosong)
     public Sprite slotOrganic;    // Trash bg_1 - Hijau (sampah organic)
@@ -34,12 +39,45 @@ public class InventoryUIManager : MonoBehaviour
     // Array untuk menyimpan ikon item yang muncul di atas setiap slot
     private Image[] trashIconImages;
 
+    // Array untuk ikon item special (overlay di atas specialSlots)
+    private Image[] specialIconImages;
+
     // Ikon overlay cube di atas craft button
     private Image craftButtonOverlay;
 
     private void Awake()
     {
-        Instance = this; 
+        Instance = this;
+
+        // --- Auto-discover specialSlots from parent if assigned ---
+        // This avoids the common mistake of only assigning the first slot in the Inspector.
+        if (specialSlotsParent != null)
+        {
+            // Grab only the DIRECT children that have an Image component
+            Image[] found = specialSlotsParent.GetComponentsInChildren<Image>(true);
+            // Filter to direct children only (not grandchildren like icon overlays)
+            System.Collections.Generic.List<Image> directChildren =
+                new System.Collections.Generic.List<Image>();
+            foreach (Image img in found)
+            {
+                if (img.transform.parent == specialSlotsParent)
+                    directChildren.Add(img);
+            }
+            specialSlots = directChildren.ToArray();
+            Debug.Log($"[InventoryUIManager] Auto-discovered {specialSlots.Length} special slots from parent '{specialSlotsParent.name}'.");
+        }
+        else
+        {
+            // Warn if any manually assigned slots are null
+            int nullCount = 0;
+            for (int i = 0; i < specialSlots.Length; i++)
+                if (specialSlots[i] == null) nullCount++;
+            if (nullCount > 0)
+                Debug.LogWarning($"[InventoryUIManager] {nullCount} of {specialSlots.Length} specialSlots are null! " +
+                                 $"Assign 'Special Slots Parent' in the Inspector for auto-discovery, " +
+                                 $"or manually assign all slots. Icons will not show in null slots.");
+        }
+
         if (specialSlots.Length > 0 && specialSlots[0] != null) defaultSpecialSprite = specialSlots[0].sprite;
 
         // Otomatis atur slotIndex untuk setiap slot agar tidak perlu diatur manual di Inspector
@@ -72,6 +110,29 @@ public class InventoryUIManager : MonoBehaviour
             iconRect.offsetMax = Vector2.zero;
 
             trashIconImages[i] = iconImage;
+        }
+
+        // Buat child Image untuk menampilkan ikon special item di setiap specialSlot
+        specialIconImages = new Image[specialSlots.Length];
+        for (int i = 0; i < specialSlots.Length; i++)
+        {
+            if (specialSlots[i] == null) continue;
+
+            GameObject iconObj = new GameObject("SpecialIcon");
+            iconObj.transform.SetParent(specialSlots[i].transform, false);
+
+            Image iconImage = iconObj.AddComponent<Image>();
+            iconImage.raycastTarget = false;
+            iconImage.preserveAspect = true;
+            iconImage.color = Color.clear; // Sembunyikan sampai ada item
+
+            RectTransform iconRect = iconObj.GetComponent<RectTransform>();
+            iconRect.anchorMin = new Vector2(0.1f, 0.1f);
+            iconRect.anchorMax = new Vector2(0.9f, 0.9f);
+            iconRect.offsetMin = Vector2.zero;
+            iconRect.offsetMax = Vector2.zero;
+
+            specialIconImages[i] = iconImage;
         }
 
         // Buat overlay Image di atas craft button untuk menampilkan ikon cube
@@ -145,26 +206,41 @@ public class InventoryUIManager : MonoBehaviour
         int currentSpecialCount = InventoryManager.Instance.collectionInventory.Count;
         for (int i = 0; i < specialSlots.Length; i++)
         {
-            if (specialSlots[i] == null) continue; // Lewati jika slot belum di-assign
+            if (specialSlots[i] == null) continue;
 
             if (i < currentSpecialCount)
             {
                 ItemInfo item = InventoryManager.Instance.collectionInventory[i];
-                if (item.itemIcon != null)
+
+                // Slot background tetap menggunakan sprite default (tidak diganti)
+                specialSlots[i].sprite = defaultSpecialSprite;
+                specialSlots[i].color = Color.white;
+
+                // Tampilkan ikon item sebagai overlay di atas slot background
+                if (specialIconImages != null && i < specialIconImages.Length && specialIconImages[i] != null)
                 {
-                    specialSlots[i].sprite = item.itemIcon;
-                    specialSlots[i].color = Color.white;
-                }
-                else
-                {
-                    specialSlots[i].sprite = defaultSpecialSprite;
-                    specialSlots[i].color = Color.yellow;
+                    if (item.itemIcon != null)
+                    {
+                        specialIconImages[i].sprite = item.itemIcon;
+                        specialIconImages[i].color = Color.white;
+                    }
+                    else
+                    {
+                        specialIconImages[i].color = Color.clear;
+                    }
                 }
             }
             else
             {
+                // Slot kosong: tampilkan background default, sembunyikan ikon
                 specialSlots[i].sprite = defaultSpecialSprite;
                 specialSlots[i].color = Color.white;
+
+                if (specialIconImages != null && i < specialIconImages.Length && specialIconImages[i] != null)
+                {
+                    specialIconImages[i].sprite = null;
+                    specialIconImages[i].color = Color.clear;
+                }
             }
         }
         // --- UPDATE CRAFT BUTTON ---
