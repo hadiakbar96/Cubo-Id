@@ -29,6 +29,12 @@ public class IntroManager : MonoBehaviour
     private bool isTyping = false;
     private bool audioPlaying = false;
 
+    // True when player pressed skip during typing
+    private bool skipTyping = false;
+
+    // True when player pressed Space/Click after typing finished (to advance)
+    private bool advancePressed = false;
+
     void Start()
     {
         StartCoroutine(PlayIntroSequence());
@@ -36,41 +42,50 @@ public class IntroManager : MonoBehaviour
 
     IEnumerator PlayIntroSequence()
     {
-        // Play intro text
-        
+        // --- INTRO TEXT PHASE ---
         for (int i = 0; i < introLines.Length; i++)
         {
+            advancePressed = false;
+
             yield return StartCoroutine(TypeText(introText, introLines[i]));
 
-            yield return new WaitUntil(() =>
-                Input.GetMouseButtonDown(0) ||
-                Input.GetKeyDown(KeyCode.Space));
+            if (!skipTyping)
+            {
+                yield return new WaitUntil(() => advancePressed);
+            }
+
+            skipTyping = false;
+            advancePressed = false;
         }
 
-        // Hide intro text
+        // Hide intro text, show dialogue box
         introText.gameObject.SetActive(false);
-
-        // Show dialogue box
         dialogueBox.SetActive(true);
         audioPlaying = true;
 
-        // DIALOGUE BOX PHASE
+        // --- DIALOGUE BOX PHASE ---
         for (int i = 0; i < dialogueLines.Length; i++)
         {
+            advancePressed = false;
+
             yield return StartCoroutine(TypeText(dialogueText, dialogueLines[i]));
 
-            yield return new WaitUntil(() =>
-                Input.GetMouseButtonDown(0) ||
-                Input.GetKeyDown(KeyCode.Space));
+            if (!skipTyping)
+            {
+                yield return new WaitUntil(() => advancePressed);
+            }
+
+            skipTyping = false;
+            advancePressed = false;
         }
 
-        // Load game scene
         SceneManager.LoadScene(gameSceneName);
     }
 
     IEnumerator TypeText(TextMeshProUGUI textComponent, string line)
     {
         isTyping = true;
+        skipTyping = false;
 
         textComponent.text = "";
 
@@ -78,14 +93,18 @@ public class IntroManager : MonoBehaviour
 
         foreach (char letter in line)
         {
+            if (skipTyping)
+            {
+                // Show full line instantly, skip typing animation
+                textComponent.text = line;
+                break;
+            }
+
             textComponent.text += letter;
 
-            // Play sound only for non-space characters
-            if (letter != ' ' && typingClip != null && typingAudio != null && audioPlaying == true) 
+            if (letter != ' ' && typingClip != null && typingAudio != null && audioPlaying)
             {
                 soundCounter++;
-
-                // Play sound every 2 characters
                 if (soundCounter % 2 == 0)
                 {
                     typingAudio.PlayOneShot(typingClip);
@@ -96,5 +115,23 @@ public class IntroManager : MonoBehaviour
         }
 
         isTyping = false;
+    }
+
+    void Update()
+    {
+        bool pressed = Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space);
+
+        if (!pressed) return;
+
+        if (isTyping)
+        {
+            // Skip typing and advance in one press
+            skipTyping = true;
+        }
+        else
+        {
+            // Advance to next line after typing finished
+            advancePressed = true;
+        }
     }
 }

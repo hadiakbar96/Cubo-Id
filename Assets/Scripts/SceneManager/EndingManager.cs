@@ -22,7 +22,12 @@ public class EndingManager : MonoBehaviour
 
     private bool isTyping = false;
     private bool audioPlaying = false;
+
+    // True when the player pressed skip during typing
     private bool skipTyping = false;
+
+    // True when the player pressed Space/Click AFTER typing finished (to advance)
+    private bool advancePressed = false;
 
     void Start()
     {
@@ -33,17 +38,25 @@ public class EndingManager : MonoBehaviour
     {
         audioPlaying = true;
 
-        // DIALOGUE BOX PHASE
         for (int i = 0; i < dialogueLines.Length; i++)
         {
+            advancePressed = false;
+
             yield return StartCoroutine(TypeText(dialogueText, dialogueLines[i]));
 
-            yield return new WaitUntil(() =>
-                Input.GetMouseButtonDown(0) ||
-                Input.GetKeyDown(KeyCode.Space));
+            // If the player already pressed skip (which skips AND advances in one press),
+            // don't wait for another press — just move straight to the next line.
+            if (!skipTyping)
+            {
+                // Typing finished naturally — wait for the player to press to advance
+                yield return new WaitUntil(() => advancePressed);
+            }
+
+            // Reset for next line
+            skipTyping = false;
+            advancePressed = false;
         }
 
-        // Load game scene
         SceneManager.LoadScene(gameSceneName);
     }
 
@@ -60,17 +73,16 @@ public class EndingManager : MonoBehaviour
         {
             if (skipTyping)
             {
+                // Show the full line instantly and stop — no extra press needed to advance
                 textComponent.text = line;
                 break;
             }
+
             textComponent.text += letter;
 
-            // Play sound only for non-space characters
-            if (letter != ' ' && typingClip != null && typingAudio != null && audioPlaying == true) 
+            if (letter != ' ' && typingClip != null && typingAudio != null && audioPlaying)
             {
                 soundCounter++;
-
-                // Play sound every 2 characters
                 if (soundCounter % 2 == 0)
                 {
                     typingAudio.PlayOneShot(typingClip);
@@ -85,9 +97,19 @@ public class EndingManager : MonoBehaviour
 
     void Update()
     {
-        if (isTyping && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)))
+        bool pressed = Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space);
+
+        if (!pressed) return;
+
+        if (isTyping)
         {
+            // First press during typing → skip to end of current line AND advance
             skipTyping = true;
+        }
+        else
+        {
+            // Press after typing finished → advance to next line
+            advancePressed = true;
         }
     }
 }
